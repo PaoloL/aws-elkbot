@@ -7,11 +7,11 @@ import requests
 import boto3
 
 
-es_host = 'search-scorerca-collaudo-utkbmw6aaxk2e5fzwrlrreyesa.eu-west-1.es.amazonaws.com'
+es_host = 'x.eu-west-1.es.amazonaws.com'
 es_port = 443
 es_index = 'scorerca_elb_logs*'
 awsauth = AWS4Auth('AKIAIQPNDBB4SN7N5P4A', 'dqe4KVzDMBX7HOLPUZ2zsBshGZUc1uq9pWrssO/m', 'eu-west-1', 'es')
-slack_token = 'xoxp-2154330578-2466889382-128327785552-b3fba7dc3de770392eab51f042d2c6b7'
+slack_token = 'xxxx'
 slack_icon_url = 'http://cloudacademy.com/blog/wp-content/uploads/2015/11/amazon-elasticsearch.jpg'
 slack_channel ='test'
 
