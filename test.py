@@ -5,32 +5,35 @@ from datetime import date
 import json
 import requests
 import boto3
+import os
 
 
-es_host = 'search-scorerca-collaudo-utkbmw6aaxk2e5fzwrlrreyesa.eu-west-1.es.amazonaws.com'
-es_port = 443
-es_index = 'scorerca_elb_logs*'
-awsauth = AWS4Auth('AKIAIQPNDBB4SN7N5P4A', 'dqe4KVzDMBX7HOLPUZ2zsBshGZUc1uq9pWrssO/m', 'eu-west-1', 'es')
-slack_token = 'xoxp-2154330578-2466889382-128327785552-b3fba7dc3de770392eab51f042d2c6b7'
-slack_icon_url = 'http://cloudacademy.com/blog/wp-content/uploads/2015/11/amazon-elasticsearch.jpg'
-slack_channel ='test'
+es_host = os.environ['ES_HOST']
+es_port = int(os.environ['ES_PORT'])
+es_index = os.environ['ES_INDEX']
+slack_token = os.environ['SLACK_TOKEN']
+slack_icon_url = os.environ['SLACK_ICON_URL']
+slack_channel = os.environ['SLACK_CHANNEL']
+aws_profile = os.environ['AWS_PROFILE']
+aws_region = os.environ['AWS_DEFAULT_REGION']
 
 def main():
     today = date.today()
-    session = boto3.session.Session()
-    credentials = session.get_credentials("score-rca")
-    print credentials.access_key
-    #es = Elasticsearch(hosts=[{'host': es_host, 'port': es_port}],http_auth=awsauth,use_ssl=True,verify_certs=True,connection_class=RequestsHttpConnection)
-    #es_status = getStatus(es)
-    #es_percentile = get_percentile(queryElasticSearch(es,'percentile.json'))
-    #es_slow_response = get_slow_responses(queryElasticSearch(es,'slow_response.json'))
-    #es_success_connection = get_success_connection(queryElasticSearch(es,'success_connection.json'))
+    print ()
+    session = boto3.Session(profile_name=aws_profile)
+    credentials = session.get_credentials()
+    awsauth = AWS4Auth(str(session.get_credentials().access_key), str(session.get_credentials().secret_key), aws_region, 'es')
+    es = Elasticsearch(hosts=[{'host': es_host, 'port': es_port}],http_auth=awsauth,use_ssl=True,verify_certs=True,connection_class=RequestsHttpConnection)
+    es_status = getStatus(es)
+    es_percentile = get_percentile(queryElasticSearch(es,'percentile.json'))
+    es_slow_response = get_slow_responses(queryElasticSearch(es,'slow_response.json'))
+    es_success_connection = get_success_connection(queryElasticSearch(es,'success_connection.json'))
     message =  "Hi <!here> Cluster Status is " + es_status + \
                 "\n" + "Today the total HTTP Connection are " + "*"+str(es_success_connection)+"*" + " only " + "*"+str(es_slow_response)+"*" + " are greather than 1 second" + \
                 "\n" + "Today 95th percentile of total_time is " + "*"+str(es_percentile[0])+"*" + \
                 "\n" + "Today 99.98th percentile of total_time is " + "*"+str(es_percentile[1])+"*"
-    print today
-    #pushToSlack(slack_channel,'ELK BoT',message)
+    pushToSlack(slack_channel,'ELK BoT',message)
+    print(message)
 
 def getStatus(es):
     status = es.cluster.health()['status']
