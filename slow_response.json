@@ -1,0 +1,49 @@
+{
+  "size": 0,
+  "aggs": {},
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "query": "(request: */scores/rca*) AND (backend_status_code: 200) AND (elb_name: awseb-e-k-AWSEBLoa-MAT2N9A53FAH) AND (total_time: [1.0 TO 19.9])",
+          "analyze_wildcard": true
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "query": {
+                "query_string": {
+                  "analyze_wildcard": true,
+                  "query": "*"
+                }
+              }
+            },
+            {
+              "range": {
+                "time_stamp": {
+                  "gte": 1484694000000,
+                  "lte": 1484780399999
+                }
+              }
+            }
+          ],
+          "must_not": []
+        }
+      }
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "@kibana-highlighted-field@"
+    ],
+    "post_tags": [
+      "@/kibana-highlighted-field@"
+    ],
+    "fields": {
+      "*": {}
+    },
+    "fragment_size": 2147483647
+  }
+}
