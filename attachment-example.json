@@ -1,0 +1,71 @@
+[
+        {
+           "fallback": "Required plain-text summary of the attachment.",
+           "color": "#36a64f",
+           "author_name": "ELK Reporter",
+           "title": "Score RCA Daily",
+           "title_link": "https:://es.eu-west-1.es.amazonaws.com/_plugin/kibana/#/dashboard",
+           "text": "This is a report about Score RCA service since the beginning of the day",
+           "fields": [
+               {
+                   "title": "Cluster Status",
+                   "value": "red"
+               },
+               {
+                   "title": "Total Success Connection",
+                   "value": 0
+               },
+               {
+                   "title": "Total Low Connestion (1 sec)",
+                   "value": 0
+               },
+               {
+                   "title": "95th Percentile",
+                   "value": 0
+               },
+               {
+                   "title": "99.8th Percentile",
+                   "value": 0
+               },
+               {
+                   "title": "99.9th Percentile",
+                   "value": 0
+               }
+           ],
+           "footer": "XPeppers",
+           "footer_icon": "https://pbs.twimg.com/profile_images/721001329192083456/oVamXtGD.jpg"
+       },
+       {
+          "fallback": "Required plain-text summary of the attachment.",
+          "color": "#36a64f",
+          "author_name": "ELK Reporter",
+          "title": "Score RCA Monthly",
+          "title_link": "https:://es.eu-west-1.es.amazonaws.com/_plugin/kibana/#/dashboard",
+          "text": "This is a report about Score RCA service since the beginning of the month",
+          "fields": [
+              {
+                  "title": "Total Success Connection",
+                  "value": 0
+              },
+              {
+                  "title": "Total Low Connestion (1 sec)",
+                  "value": 0
+              },
+              {
+                  "title": "95th Percentile",
+                  "value": 0
+              },
+              {
+                  "title": "99.8th Percentile",
+                  "value": 0
+              },
+              {
+                  "title": "99.9th Percentile",
+                  "value": 0
+              }
+          ],
+          "footer": "XPeppers",
+          "footer_icon": "https://pbs.twimg.com/profile_images/721001329192083456/oVamXtGD.jpg"
+      }
+
+    ]

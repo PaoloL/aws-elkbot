@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1485013525000",
+            "Effect": "Allow",
+            "Action": [
+                "es:ESHttpGet"
+            ],
+            "Resource": "arn:aws:es:eu-west-1:aws-account-id:domain"
+        },
+        {
+            "Sid": "Stmt1485013525001",
+            "Effect": "Allow",
+            "Action": [
+                "es:List*",
+                "es:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

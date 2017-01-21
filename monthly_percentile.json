@@ -1,0 +1,40 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "query": "*",
+          "analyze_wildcard": true
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "time_stamp": {
+                  "gte": "now/M",
+                  "lte": "now"
+                }
+              }
+            }
+          ],
+          "must_not": []
+        }
+      }
+    }
+  },
+  "size": 0,
+  "aggs": {
+    "1": {
+      "percentiles": {
+        "field": "total_time",
+        "percents": [
+          95,
+          99.8,
+          99.9
+        ]
+      }
+    }
+  }
+}
