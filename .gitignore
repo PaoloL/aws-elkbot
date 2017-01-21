@@ -1,1 +1,9 @@
 elkbot/
+attachment.json
+daily_percentile.json
+daily_slow_response.json
+daily_success_connection.json
+lambdapkg.zip
+monthly_percentile.json
+monthly_slow_response.json
+monthly_success_connection.json
