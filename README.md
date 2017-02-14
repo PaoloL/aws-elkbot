@@ -1,5 +1,5 @@
 
-# AWS ELK BOT for SLACK
+# AWS Lambda BOT - From ELK to SLACK
 
 ## Installation and Configuration
 
